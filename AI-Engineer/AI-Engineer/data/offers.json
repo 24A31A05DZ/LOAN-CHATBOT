@@ -1,0 +1,82 @@
+[
+  {
+    "customer_id": "CUST001",
+    "offer_type": "Personal Loan",
+    "max_amount": 500000,
+    "interest_rate": 10.5,
+    "max_tenure_months": 60,
+    "special_offer": "Zero processing fee"
+  },
+  {
+    "customer_id": "CUST002",
+    "offer_type": "Personal Loan",
+    "max_amount": 300000,
+    "interest_rate": 11.5,
+    "max_tenure_months": 48,
+    "special_offer": "Instant approval"
+  },
+  {
+    "customer_id": "CUST003",
+    "offer_type": "Personal Loan",
+    "max_amount": 800000,
+    "interest_rate": 9.5,
+    "max_tenure_months": 72,
+    "special_offer": "Premium customer rate"
+  },
+  {
+    "customer_id": "CUST004",
+    "offer_type": "Personal Loan",
+    "max_amount": 400000,
+    "interest_rate": 10.75,
+    "max_tenure_months": 60,
+    "special_offer": "Flexible EMI options"
+  },
+  {
+    "customer_id": "CUST005",
+    "offer_type": "Personal Loan",
+    "max_amount": 200000,
+    "interest_rate": 12.0,
+    "max_tenure_months": 36,
+    "special_offer": "Quick disbursal"
+  },
+  {
+    "customer_id": "CUST006",
+    "offer_type": "Personal Loan",
+    "max_amount": 600000,
+    "interest_rate": 10.0,
+    "max_tenure_months": 60,
+    "special_offer": "Top-up loan available"
+  },
+  {
+    "customer_id": "CUST007",
+    "offer_type": "Personal Loan",
+    "max_amount": 350000,
+    "interest_rate": 10.75,
+    "max_tenure_months": 48,
+    "special_offer": "No prepayment penalty"
+  },
+  {
+    "customer_id": "CUST008",
+    "offer_type": "Personal Loan",
+    "max_amount": 250000,
+    "interest_rate": 11.25,
+    "max_tenure_months": 48,
+    "special_offer": "Festive discount"
+  },
+  {
+    "customer_id": "CUST009",
+    "offer_type": "Personal Loan",
+    "max_amount": 700000,
+    "interest_rate": 9.75,
+    "max_tenure_months": 72,
+    "special_offer": "Loyalty bonus"
+  },
+  {
+    "customer_id": "CUST010",
+    "offer_type": "Personal Loan",
+    "max_amount": 450000,
+    "interest_rate": 10.5,
+    "max_tenure_months": 60,
+    "special_offer": "First loan discount"
+  }
+]

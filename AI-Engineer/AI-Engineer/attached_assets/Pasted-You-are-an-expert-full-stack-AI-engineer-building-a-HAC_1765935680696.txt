@@ -1,0 +1,106 @@
+You are an expert full-stack AI engineer building a HACKATHON-READY prototype.
+
+GOAL:
+Build a COMPLETE, DEMONSTRATABLE web-based Agentic AI Personal Loan Chatbot prototype for a BFSI NBFC (Tata Capital–like use case).
+
+CRITICAL CONSTRAINTS:
+• This is a FREE-TIER Replit build – avoid paid services
+• Must run fully inside Replit
+• Use mock data only
+• Focus on functionality, not heavy UI
+• No re-architecture once built
+
+TECH STACK (MANDATORY):
+• Backend: Python + FastAPI
+• Frontend: Simple HTML + CSS + JavaScript (no React)
+• AI Logic: Rule-based + prompt-based agent simulation (NO external paid LLM APIs)
+• PDF Generation: reportlab
+• Storage: JSON files (no databases)
+• File Upload: local filesystem
+
+ARCHITECTURE (STRICT):
+Implement AGENTIC AI using a MASTER AGENT and WORKER AGENTS.
+
+AGENTS:
+1. Master Agent (Orchestrator)
+   - Handles entire conversation flow
+   - Decides which Worker Agent to invoke
+   - Maintains session state per user
+   - Starts and ends chat
+
+2. Worker Agents:
+   a) Sales Agent
+      - Collects loan amount, tenure
+      - Persuades user with EMI estimate
+   b) Verification Agent
+      - Fetches KYC from mock CRM JSON
+   c) Underwriting Agent
+      - Fetches credit score from mock Credit Bureau JSON
+      - Rules:
+        • Credit score < 700 → Reject
+        • Loan ≤ pre-approved limit → Approve
+        • Loan ≤ 2× pre-approved limit → Ask salary slip
+        • EMI ≤ 50% salary → Approve
+        • Else → Reject
+   d) Sanction Letter Generator
+      - Generates PDF sanction letter if approved
+
+DATA (CREATE THESE FILES):
+• data/customers.json (10 dummy customers)
+  Fields:
+  name, age, city, phone, credit_score, preapproved_limit, salary
+
+• data/offers.json (pre-approved offers)
+
+BACKEND REQUIREMENTS:
+• FastAPI app on port 3000
+• POST /chat → main conversation endpoint
+• POST /upload-salary → salary slip upload
+• Session memory stored in Python dictionary
+• Clear logs printed for each agent invocation
+
+FRONTEND REQUIREMENTS:
+• Simple chat UI:
+  - Input box
+  - Send button
+  - Chat history
+• Salary slip upload button appears ONLY when required
+• Download link appears when sanction PDF is generated
+
+OUTPUTS (MANDATORY):
+• Working chatbot
+• Salary slip upload flow
+• Credit decision logic visible in logs
+• Downloadable PDF sanction letter
+• Clean folder structure
+
+FOLDER STRUCTURE:
+/
+ ├── main.py
+ ├── agents/
+ │   ├── master_agent.py
+ │   ├── sales_agent.py
+ │   ├── verification_agent.py
+ │   ├── underwriting_agent.py
+ │   └── sanction_generator.py
+ ├── data/
+ │   ├── customers.json
+ │   └── offers.json
+ ├── uploads/
+ ├── templates/
+ │   └── index.html
+ └── static/
+     └── style.css
+
+IMPORTANT:
+• Code must be COMPLETE and RUNNABLE
+• Do NOT leave TODOs
+• Do NOT use placeholders
+• Explain briefly in comments where agents are invoked
+• Optimize for demo clarity
+
+FINAL CHECK:
+When finished, print:
+"Prototype ready: Agentic AI Personal Loan Chatbot running successfully"
+
+Now build the entire project.

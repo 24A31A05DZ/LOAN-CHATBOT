@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Loan Chatbot - Capital Finance Ltd.</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <h1>Capital Finance Ltd.</h1>
+                <p>Your Trusted Financial Partner</p>
+            </div>
+        </header>
+
+        <div class="chat-container">
+            <div class="chat-header">
+                <div class="bot-avatar">AI</div>
+                <div class="bot-info">
+                    <h2>Loan Assistant</h2>
+                    <span class="status">Online</span>
+                </div>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    <div class="message-content">
+                        <p>Hello! Welcome to Capital Finance Ltd. I'm your AI Loan Assistant.</p>
+                        <p>Type <strong>"Hi"</strong> or <strong>"Start"</strong> to begin your personal loan application.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="upload-section" id="uploadSection" style="display: none;">
+                <div class="upload-box">
+                    <p>Please upload your salary slip (PDF or Image)</p>
+                    <input type="file" id="salaryFile" accept=".pdf,.jpg,.jpeg,.png">
+                    <button class="upload-btn" onclick="uploadSalarySlip()">Upload Salary Slip</button>
+                </div>
+            </div>
+
+            <div class="download-section" id="downloadSection" style="display: none;">
+                <div class="download-box">
+                    <p>Your sanction letter is ready!</p>
+                    <a id="downloadLink" href="#" class="download-btn" download>Download Sanction Letter</a>
+                </div>
+            </div>
+
+            <div class="chat-input-container">
+                <input type="text" id="userInput" placeholder="Type your message..." onkeypress="handleKeyPress(event)">
+                <button class="send-btn" onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>Hackathon Prototype - Agentic AI Personal Loan Chatbot</p>
+        </footer>
+    </div>
+
+    <script>
+        let sessionId = null;
+
+        function formatMessage(text) {
+            return text.replace(/\n/g, '<br>');
+        }
+
+        function addMessage(content, isBot) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isBot ? 'bot-message' : 'user-message'}`;
+            
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'message-content';
+            contentDiv.innerHTML = formatMessage(content);
+            
+            messageDiv.appendChild(contentDiv);
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function showUploadSection(show) {
+            document.getElementById('uploadSection').style.display = show ? 'block' : 'none';
+        }
+
+        function showDownloadSection(show, filename) {
+            const section = document.getElementById('downloadSection');
+            section.style.display = show ? 'block' : 'none';
+            if (filename) {
+                document.getElementById('downloadLink').href = `/download/${filename}`;
+            }
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('userInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            addMessage(message, false);
+            input.value = '';
+            input.disabled = true;
+
+            try {
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        session_id: sessionId,
+                        message: message
+                    })
+                });
+
+                const data = await response.json();
+                sessionId = data.session_id;
+                
+                addMessage(data.message, true);
+                
+                showUploadSection(data.show_upload);
+                showDownloadSection(data.show_download, data.download_file);
+
+                if (data.session_ended) {
+                    input.placeholder = 'Session ended. Refresh to start a new application.';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                addMessage('Sorry, something went wrong. Please try again.', true);
+            }
+
+            input.disabled = false;
+            input.focus();
+        }
+
+        async function uploadSalarySlip() {
+            const fileInput = document.getElementById('salaryFile');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                alert('Please select a file first.');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            addMessage(`Uploading salary slip: ${file.name}`, false);
+
+            try {
+                const response = await fetch(`/upload-salary?session_id=${sessionId}`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    showUploadSection(false);
+                    addMessage(data.message, true);
+                    showDownloadSection(data.show_download, data.download_file);
+                } else {
+                    addMessage('Error uploading file. Please try again.', true);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                addMessage('Sorry, something went wrong with the upload. Please try again.', true);
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        document.getElementById('userInput').focus();
+    </script>
+</body>
+</html>

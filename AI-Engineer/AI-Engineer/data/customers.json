@@ -1,0 +1,102 @@
+[
+  {
+    "id": "CUST001",
+    "name": "Rajesh Kumar",
+    "age": 35,
+    "city": "Mumbai",
+    "phone": "9876543210",
+    "credit_score": 750,
+    "preapproved_limit": 500000,
+    "salary": 85000
+  },
+  {
+    "id": "CUST002",
+    "name": "Priya Sharma",
+    "age": 28,
+    "city": "Delhi",
+    "phone": "9876543211",
+    "credit_score": 680,
+    "preapproved_limit": 300000,
+    "salary": 55000
+  },
+  {
+    "id": "CUST003",
+    "name": "Amit Patel",
+    "age": 42,
+    "city": "Ahmedabad",
+    "phone": "9876543212",
+    "credit_score": 820,
+    "preapproved_limit": 800000,
+    "salary": 120000
+  },
+  {
+    "id": "CUST004",
+    "name": "Sunita Reddy",
+    "age": 31,
+    "city": "Hyderabad",
+    "phone": "9876543213",
+    "credit_score": 720,
+    "preapproved_limit": 400000,
+    "salary": 70000
+  },
+  {
+    "id": "CUST005",
+    "name": "Vikram Singh",
+    "age": 45,
+    "city": "Jaipur",
+    "phone": "9876543214",
+    "credit_score": 650,
+    "preapproved_limit": 200000,
+    "salary": 45000
+  },
+  {
+    "id": "CUST006",
+    "name": "Neha Gupta",
+    "age": 29,
+    "city": "Bangalore",
+    "phone": "9876543215",
+    "credit_score": 780,
+    "preapproved_limit": 600000,
+    "salary": 95000
+  },
+  {
+    "id": "CUST007",
+    "name": "Rahul Verma",
+    "age": 38,
+    "city": "Chennai",
+    "phone": "9876543216",
+    "credit_score": 710,
+    "preapproved_limit": 350000,
+    "salary": 65000
+  },
+  {
+    "id": "CUST008",
+    "name": "Anita Joshi",
+    "age": 33,
+    "city": "Pune",
+    "phone": "9876543217",
+    "credit_score": 690,
+    "preapproved_limit": 250000,
+    "salary": 50000
+  },
+  {
+    "id": "CUST009",
+    "name": "Sanjay Mehta",
+    "age": 50,
+    "city": "Kolkata",
+    "phone": "9876543218",
+    "credit_score": 800,
+    "preapproved_limit": 700000,
+    "salary": 110000
+  },
+  {
+    "id": "CUST010",
+    "name": "Kavita Nair",
+    "age": 27,
+    "city": "Kochi",
+    "phone": "9876543219",
+    "credit_score": 740,
+    "preapproved_limit": 450000,
+    "salary": 75000
+  }
+]
